@@ -165,3 +165,9 @@ index.html           100% |***********************************|   104  0:00:00 E
 'index.html' saved
 / # cat index.html
 {"pod_name":"pod-info-deployment-5b84b47d9b-lkmbw","pod_namespace":"development","pod_ip":"10.244.0.10"}/ # exit
+
+3.6 View your application logs
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl logs pod-info-deployment-5b84b47d9b-lkmbw -n development
+undefined
+Example app listening on port 3000
