@@ -50,3 +50,15 @@ Services act as load balancers within the cluster and direct traffic to pods.
 
 3.2 Create a namespace
 kubectl apply -f namespace.yaml
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl apply -f namespace.yaml
+namespace/development created
+namespace/staging created
+namespace/production created
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl delete -f namespace.yaml
+namespace "development" deleted
+namespace "staging" deleted
+namespace "production" deleted
+
+Now you know how to create namespaces, which will help you isolate apps and microservices.
