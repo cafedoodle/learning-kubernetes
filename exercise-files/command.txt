@@ -70,13 +70,19 @@ deployment.apps/pod-info-deployment created
 
 C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get deployments -n development
 NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
-pod-info-deployment   0/3     3            0           86s
+pod-info-deployment   3/3     3            3           13m
 
 C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get pods -n development
-NAME                                   READY   STATUS             RESTARTS   AGE
-pod-info-deployment-5489886cf7-76tdq   0/1     ImagePullBackOff   0          2m39s
-pod-info-deployment-5489886cf7-d9kh9   0/1     ImagePullBackOff   0          2m39s
-pod-info-deployment-5489886cf7-xkw46   0/1     ImagePullBackOff   0          2m39s
+NAME                                   READY   STATUS    RESTARTS   AGE
+pod-info-deployment-5b84b47d9b-hfcqs   1/1     Running   0          73s
+pod-info-deployment-5b84b47d9b-lkmbw   1/1     Running   0          93s
+pod-info-deployment-5b84b47d9b-tp8kv   1/1     Running   0          75s
 
-C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl delete pod pod-info-deployment-5489886cf7-76tdq -n development
-pod "pod-info-deployment-5489886cf7-76tdq" deleted
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl delete pod pod-info-deployment-5b84b47d9b-hfcqs -n development
+pod "pod-info-deployment-5b84b47d9b-hfcqs" deleted
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get pods -n development
+NAME                                   READY   STATUS    RESTARTS   AGE
+pod-info-deployment-5b84b47d9b-lkmbw   1/1     Running   0          3m25s
+pod-info-deployment-5b84b47d9b-tp8kv   1/1     Running   0          3m7s
+pod-info-deployment-5b84b47d9b-tsbdb   1/1     Running   0          62s

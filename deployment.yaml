@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: pod-info-container
-          image: kimscheles/pod-info-app:latest
+          image: kimschles/pod-info-app:latest
           ports:
             - containerPort: 3000
           env:
@@ -35,4 +35,5 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
 
-#setting up the container to have three environment variables called POD_NAME, POD_NAMESPACE, and POD_IP.
+#Setting up the container to have three environment variables called POD_NAME, POD_NAMESPACE, and POD_IP.
+#Each of these variables pulls its value from the pod's metadata and status fields using fieldRef. This allows the application running inside the container to access information about its own pod, such as its name, the namespace it is running in, and its IP address.
