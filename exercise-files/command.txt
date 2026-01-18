@@ -136,3 +136,32 @@ Node-Selectors:              <none>
   Normal  Pulled     5m53s  kubelet            Successfully pulled image "kimschles/pod-info-app:latest" in 3.668s (3.668s including waiting). Image size: 213980203 bytes.
   Normal  Created    5m53s  kubelet            Created container: pod-info-container
   Normal  Started    5m53s  kubelet            Started container pod-info-container
+
+3.5 Check that your application is working with BusyBox
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl apply -f busybox.yaml
+deployment.apps/busybox created
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get pods -n default
+NAME                      READY   STATUS    RESTARTS   AGE
+busybox-8578bccf7-h4wj8   1/1     Running   0          23s
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get pods -n development -o wide
+NAME                                   READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+pod-info-deployment-5b84b47d9b-lkmbw   1/1     Running   0          25m   10.244.0.10   minikube   <none>           <none>
+pod-info-deployment-5b84b47d9b-tp8kv   1/1     Running   0          25m   10.244.0.11   minikube   <none>           <none>
+pod-info-deployment-5b84b47d9b-tsbdb   1/1     Running   0          23m   10.244.0.13   minikube   <none>           <none>
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl exec -it busybox-8578bccf7-h4wj8 -- /bin/sh
+/ #
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl exec -it busybox-8578bccf7-h4wj8 -- /bin/sh
+/ # wget 10.244.0.10:3000
+
+/ # wget 10.244.0.10:3000
+Connecting to 10.244.0.10:3000 (10.244.0.10:3000)
+saving to 'index.html'
+index.html           100% |***********************************|   104  0:00:00 ETA 
+'index.html' saved
+/ # cat index.html
+{"pod_name":"pod-info-deployment-5b84b47d9b-lkmbw","pod_namespace":"development","pod_ip":"10.244.0.10"}/ # exit
