@@ -1,0 +1,52 @@
+2.7 Spin up and explore a minikube cluster
+minikube start
+
+Next, let's create a cluster with minikube. The command is minikube start.
+The difference between minikube and cube control.
+The minikube command helps you create a cluster from scratch,
+whereas cube control lets you interact with your cluster.
+In the future, when you spin up a cluster using a cloud provider like AWS, Azure, or gcp, you'll use their command line tool to generate the cluster and cube control for the rest of your actions. 
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:59139
+CoreDNS is running at https://127.0.0.1:59139/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get nodes
+NAME       STATUS   ROLES           AGE    VERSION
+minikube   Ready    control-plane   109s   v1.34.0
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get namespaces
+NAME                   STATUS   AGE
+default                Active   3m15s
+kube-node-lease        Active   3m15s
+kube-public            Active   3m15s
+kube-system            Active   3m15s
+kubernetes-dashboard   Active   3m10s
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get pods -A
+NAMESPACE              NAME                                         READY   STATUS    RESTARTS        AGE
+kube-system            coredns-66bc5c9577-2784t                     1/1     Running   0               5m31s
+kube-system            coredns-66bc5c9577-v8ft6                     1/1     Running   0               5m31s
+kube-system            etcd-minikube                                1/1     Running   0               5m36s
+kube-system            kube-apiserver-minikube                      1/1     Running   0               5m36s
+kube-system            kube-controller-manager-minikube             1/1     Running   0               5m36s
+kube-system            kube-proxy-n5cln                             1/1     Running   0               5m31s
+kube-system            kube-scheduler-minikube                      1/1     Running   0               5m36s
+kube-system            storage-provisioner                          1/1     Running   1 (5m10s ago)   5m34s
+kubernetes-dashboard   dashboard-metrics-scraper-77bf4d6c4c-k2swz   1/1     Running   0               5m31s
+kubernetes-dashboard   kubernetes-dashboard-855c9754f9-khws6        1/1     Running   0               5m31s
+
+These pods are how containers are run in Kubernetes.
+These pods are also the software required to run a Kubernetes cluster itself. 
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get services -A
+NAMESPACE              NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                  AGE
+default                kubernetes                  ClusterIP   10.96.0.1       <none>        443/TCP                  6m10s
+kube-system            kube-dns                    ClusterIP   10.96.0.10      <none>        53/UDP,53/TCP,9153/TCP   6m9s
+kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.111.4.125    <none>        8000/TCP                 6m6s
+kubernetes-dashboard   kubernetes-dashboard        ClusterIP   10.102.23.106   <none>        80/TCP                   6m6s
+
+Services act as load balancers within the cluster and direct traffic to pods.
+
+3.2 Create a namespace
+kubectl apply -f namespace.yaml
