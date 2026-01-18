@@ -86,3 +86,53 @@ NAME                                   READY   STATUS    RESTARTS   AGE
 pod-info-deployment-5b84b47d9b-lkmbw   1/1     Running   0          3m25s
 pod-info-deployment-5b84b47d9b-tp8kv   1/1     Running   0          3m7s
 pod-info-deployment-5b84b47d9b-tsbdb   1/1     Running   0          62s
+
+3.4 Check the health of a pod by looking at the event logs
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl describe pod pod-info-deployment-5b84b47d9b-tsbdb -n development
+Name:             pod-info-deployment-5b84b47d9b-tsbdb
+Namespace:        development
+Priority:         0
+Service Account:  default
+Status:           Running
+Controlled By:  ReplicaSet/pod-info-deployment-5b84b47d9b
+Containers:
+  pod-info-container:
+    Container ID:   docker://4372dfde3e80a8591afbc87153795959f89789b8e8c17836da0f6e705a80ddb5
+    Image:          kimschles/pod-info-app:latest
+    Image ID:       docker-pullable://kimschles/pod-info-app@sha256:fa4f33bc2301bb242bdd078ac206d0e379dfed2e225d46a6952ff444ae6f4a7a
+    Port:           3000/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 18 Jan 2026 14:35:07 -0600
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      POD_NAME:       pod-info-deployment-5b84b47d9b-tsbdb (v1:metadata.name)
+      POD_NAMESPACE:  development (v1:metadata.namespace)
+      POD_IP:          (v1:status.podIP)
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-26kgx (ro)      
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-26kgx:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  5m57s  default-scheduler  Successfully assigned development/pod-info-deployment-5b84b47d9b-tsbdb to minikube
+  Normal  Pulling    5m57s  kubelet            Pulling image "kimschles/pod-info-app:latest"
+  Normal  Pulled     5m53s  kubelet            Successfully pulled image "kimschles/pod-info-app:latest" in 3.668s (3.668s including waiting). Image size: 213980203 bytes.
+  Normal  Created    5m53s  kubelet            Created container: pod-info-container
+  Normal  Started    5m53s  kubelet            Started container pod-info-container
