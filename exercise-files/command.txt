@@ -197,3 +197,22 @@ quote-service-6b98769d4b-j8slk         1/1     Running   0          17s
 quote-service-6b98769d4b-jndxf         1/1     Running   0          17s
 
 4 Complex Application Deployment
+
+4.1 Expose your application to the internet with a LoadBalancer
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>minikube tunnel
+  Tunnel successfully started
+
+  NOTE: Please do not close this terminal as this process must stay alive for the tunnel to be accessible ...
+
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl apply -f service.yaml
+service/demo-service created
+
+C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get services -n development
+NAME           TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+demo-service   LoadBalancer   10.104.132.115   127.0.0.1     80:30857/TCP   34s
+
+# Now open a browser and go to http://127.0.0.1/
+# Will see this output
+{"pod_name":"pod-info-deployment-5b84b47d9b-tsbdb","pod_namespace":"development","pod_ip":"10.244.0.18"}
