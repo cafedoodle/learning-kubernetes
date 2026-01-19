@@ -1,3 +1,6 @@
+
+2 Setting Up and Getting Oriented
+
 2.7 Spin up and explore a minikube cluster
 minikube start
 
@@ -47,6 +50,8 @@ kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.111.4.125    <
 kubernetes-dashboard   kubernetes-dashboard        ClusterIP   10.102.23.106   <none>        80/TCP                   6m6s
 
 Services act as load balancers within the cluster and direct traffic to pods.
+
+3 Application Deployment
 
 3.2 Create a namespace
 kubectl apply -f namespace.yaml
@@ -190,3 +195,5 @@ C:\Users\bookl\Downloads\Lynda\learning-kubernetes>kubectl get pods -n developme
 NAME                                   READY   STATUS    RESTARTS   AGE
 quote-service-6b98769d4b-j8slk         1/1     Running   0          17s
 quote-service-6b98769d4b-jndxf         1/1     Running   0          17s
+
+4 Complex Application Deployment
